@@ -271,7 +271,7 @@ namespace DuckGame
 
         public override int GetHashCode() => (int)Colors.GetHash(this);
 
-        public override string ToString() => string.Format("{0} {1} {2} {3}", r, g, b, a);
+        public override string ToString() => string.Format("{0} {1} {2}", r, g, b);
 
         public readonly string ToDGColorString() => string.Format("|{0},{1},{2}|", r, g, b);
 

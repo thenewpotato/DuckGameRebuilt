@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading;
 using AddedContent.Hyeve;
 using DuckGame;
+using System.IO;
 
 namespace DuckGame
 {
@@ -728,7 +729,8 @@ namespace DuckGame
                             levelDuck.AiInput = new DuckAI();
                         }
                         levelDuck.AiInput.HoldDown(Triggers.Left);
-                        action = Console.Read().ToString();
+
+                        action = ZeroMQServer.ReadFrame();
                     }
          
                     if (_camera != null)
@@ -745,7 +747,28 @@ namespace DuckGame
                     {
                         Duck levelDuck = levelDucks.FindLast(t => t.profile.team.name == "Player 1");
                         levelDuck.AiInput.Release(Triggers.Left);
-                        Console.WriteLine(action);
+
+                        // int width = Graphics.width;
+                        // int height = Graphics.height;
+                        RenderTarget2D canvas = new RenderTarget2D(256, 144, true);
+                        MonoMain.RenderGame(canvas);
+/*                        Graphics.SetRenderTarget(canvas);
+                        Graphics.UpdateScreenViewport(true);
+                        HUD.hide = true;
+                        DrawCurrentLevel();
+                        Graphics.screen.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.Identity);
+                        // MonoMain.OnDraw();
+                        Graphics.screen.End();
+                        HUD.hide = false;*/
+                        // Graphics.width = width;
+                        // Graphics.height = height;
+                        // Graphics.SetRenderTarget(null);
+
+/*                        Stream stream = DuckFile.Create(DuckFile.albumDirectory + "album" + DateTime.Now.ToString("MM-dd-yy H;mm;ss.fff") + ".png");
+                        canvas.SaveAsPng(stream, 256, 144);
+                        stream.Close();*/
+
+                        ZeroMQServer.SendFrame("Image length: " + string.Join(",", canvas.GetData()));
                     }
                 }
                 else

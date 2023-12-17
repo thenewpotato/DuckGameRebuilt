@@ -201,6 +201,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AsyncIO, Version=0.1.69.0, Culture=neutral, PublicKeyToken=44a94435bd6f33f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\AsyncIO.0.1.69\lib\net40\AsyncIO.dll</HintPath>
+    </Reference>
     <Reference Include="DGInput">
       <HintPath>lib\DGInput.dll</HintPath>
     </Reference>
@@ -208,6 +211,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DiscordRPC.dll</HintPath>
     </Reference>
+    <Reference Include="Google.ProtocolBuffers, Version=2.4.1.555, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffers.Serialization, Version=2.4.1.555, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.ProtocolBuffers.2.4.1.555\lib\net40\Google.ProtocolBuffers.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.2.46.6\lib\net45\Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.Api.2.46.6\lib\net45\Grpc.Core.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Mono.Cecil.dll</HintPath>
@@ -216,8 +232,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\MonoMod.exe</HintPath>
     </Reference>
+    <Reference Include="NaCl, Version=0.1.13.0, Culture=neutral, PublicKeyToken=827c20e50a9775fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\NaCl.Net.0.1.13\lib\net472\NaCl.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio">
       <HintPath>lib\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NetMQ, Version=4.0.1.13, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.4.0.1.13\lib\net47\NetMQ.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>lib\Newtonsoft.Json.dll</HintPath>
@@ -230,6 +252,12 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="protobuf-net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.3.2.30\lib\net462\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.Core.3.2.30\lib\net462\protobuf-net.Core.dll</HintPath>
+    </Reference>
     <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
       <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
     </Reference>
@@ -240,6 +268,9 @@
       <HintPath>..\packages\SixLabors.ImageSharp.Drawing.1.0.0\lib\net472\SixLabors.ImageSharp.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.7.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -257,7 +288,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\deps\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
@@ -659,6 +694,7 @@
     <Compile Include="src\DuckGame\Network\ConcurrentStack.cs" />
     <Compile Include="src\DuckGame\Network\NMEnableFiftyPlayerMode.cs" />
     <Compile Include="src\DuckGame\Stuff\StandingFluid.cs" />
+    <Compile Include="src\DuckGame\ZeroMQ\ZeroMQServer.cs" />
     <Compile Include="src\MonoTime\Console\Commands\AdvancedConfig.cs" />
     <Compile Include="src\MonoTime\Console\Commands\Bind.cs" />
     <Compile Include="src\MonoTime\Console\Commands\CheckCheats.cs" />
@@ -2424,6 +2460,9 @@
     <EmbeddedResource Include="SlnPath.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DuckGame.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -2467,5 +2506,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETFramework.ReferenceAssemblies.net48.1.0.3\build\Microsoft.NETFramework.ReferenceAssemblies.net48.targets'))" />
+    <Error Condition="!Exists('..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets'))" />
   </Target>
+  <Import Project="..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" />
 </Project>
