@@ -153,23 +153,35 @@ namespace DuckGame
             }
             else
             {
-                stringList1.AddRange(_fourPlayerLevels);
-                stringList1.AddRange(_eightPlayerNonRestrictedLevels);
+                // 4: spike banana middle, shotgun side
+                // 24: wide jumper
+                // 28: grenade launcher
+                LevelData dat = DuckFile.LoadLevel(DuckFile.levelDirectory + "b.lev");
+                if (dat != null)
+                {
+                    string str2 = dat.metaData.guid + ".custom";
+                    if (Content.GetLevel(dat.metaData.guid, LevelLocation.Custom) == null)
+                        Content.MapLevel(dat.metaData.guid, dat, LevelLocation.Custom);
+                    return str2;
+                }
+                //stringList1.Add(_fourPlayerLevels[0]);
+                // stringList1.AddRange(_fourPlayerLevels);
+                // stringList1.AddRange(_eightPlayerNonRestrictedLevels);
             }
             DateTime localTime = MonoMain.GetLocalTime();
             if (DateTime.Now.Month == 12)
             {
-                if (localTime.Day <= 25)
-                    stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
-                else if (localTime.Day == 24 || localTime.Day == 25)
-                {
-                    stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
-                    stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
-                    stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
-                }
+                //if (localTime.Day <= 25)
+                    //stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
+                //else if (localTime.Day == 24 || localTime.Day == 25)
+                //{
+                    //stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
+                    //stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
+                    //stringList1.Add("23ec9c56-dbcc-4384-9507-5b0f80cb0111");
+                //}
             }
-            if (ignore != "")
-                stringList1.AddRange(_rareLevels);
+            //if (ignore != "")
+            //    stringList1.AddRange(_rareLevels);
             if (TeamSelect2.normalMapPercent != 100 | forceCustom)
             {
                 MapRollGroup mapRollGroup1 = null;

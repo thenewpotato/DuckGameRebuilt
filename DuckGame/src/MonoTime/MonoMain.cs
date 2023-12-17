@@ -636,7 +636,7 @@ namespace DuckGame
 
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             LangHandler.Initialize();
-            //IsFixedTimeStep = true; edited because i change it back after load is done
+            //IsFixedTimeStep = yes; edited because i change it back after load is done
             Graphics.mouseVisible = false;
             base.Initialize();
             DuckGame.Content.InitializeBase(Content);
@@ -1095,7 +1095,7 @@ namespace DuckGame
             //Program.main.TargetElapsedTime = TimeSpan.FromTicks(166667L);
             if (!(startInLobby || Program.testServer))
             {
-                IsFixedTimeStep = true; // UNZOOOM
+                IsFixedTimeStep = false; // UNZOOOM
             }
            
             Program.SetAccumulatedElapsedTime(Program.main, Program.main.TargetElapsedTime);

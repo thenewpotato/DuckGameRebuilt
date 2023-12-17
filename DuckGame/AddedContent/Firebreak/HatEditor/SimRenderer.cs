@@ -30,7 +30,7 @@ namespace DuckGame
 
             Dictionary<uint, Action<Duck>> timelineActions = new()
             {
-                {30, duck =>
+                {30, duck => // This is an anon function that operates the action on a provided duck object
                     {
                         duck.AiInput.HoldDown(Triggers.Right);
                     }

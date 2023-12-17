@@ -196,7 +196,7 @@ namespace DuckGame
                         }
                         else if (First<NatureTileset>() != null)
                         {
-                            Raining = true;
+                            Raining = false;
                             NatureBackground ng = First<NatureBackground>();
                             if (ng != null)
                             {
@@ -230,7 +230,7 @@ namespace DuckGame
                             };
                             rainSound._effect.saveToRecording = false;
                             darkenRainer = 0.8f;
-                            Raining = true;
+                            Raining = false;
                             rainwind = Rando.Float(-2, 2);
                             lightningRNG = Rando.Int(2400, 4800);
                             if (Rando.Int(2) == 0)

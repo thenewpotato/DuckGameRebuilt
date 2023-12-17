@@ -717,6 +717,20 @@ namespace DuckGame
                 }
                 if (levelIsUpdating)
                 {
+                    string action = "Frame!";
+                    List<Duck> levelDucks = _things[typeof(Duck)].Cast<Duck>().ToList();
+                    if (levelDucks.Count > 0)
+                    {
+                        // DevConsole.RunCommand("level next");
+                        Duck levelDuck = levelDucks.FindLast(t => t.profile.team.name == "Player 1");
+                        if (levelDuck.AiInput == null)
+                        {
+                            levelDuck.AiInput = new DuckAI();
+                        }
+                        levelDuck.AiInput.HoldDown(Triggers.Left);
+                        action = Console.Read().ToString();
+                    }
+         
                     if (_camera != null)
                         _camera.DoUpdate();
                     Update();
@@ -726,6 +740,13 @@ namespace DuckGame
                     _things.RefreshState();
                     Vote.Update();
                     HUD.Update();
+
+                    if (levelDucks.Count > 0)
+                    {
+                        Duck levelDuck = levelDucks.FindLast(t => t.profile.team.name == "Player 1");
+                        levelDuck.AiInput.Release(Triggers.Left);
+                        Console.WriteLine(action);
+                    }
                 }
                 else
                     _things.RefreshState();

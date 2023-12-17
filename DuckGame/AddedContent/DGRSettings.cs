@@ -367,7 +367,7 @@ namespace DuckGame
             }
             set
             {
-                MonoMain.graphics.SynchronizeWithVerticalRetrace = value;
+                MonoMain.graphics.SynchronizeWithVerticalRetrace = false;
                 Program.main.UseDrawRateLimiter = !value;
                 S_UseVSync = value;
                 MonoMain.graphics.ApplyChanges();
@@ -402,7 +402,7 @@ namespace DuckGame
 
         public static void InitalizeFPSThings()
         {
-            MonoMain.graphics.SynchronizeWithVerticalRetrace = UseVSync;
+            MonoMain.graphics.SynchronizeWithVerticalRetrace = false;
             Program.main.FrameLimiterTarget = Math.Max(TargetFrameRate,60);
             Program.main.UseDrawRateLimiter = !UseVSync && UncappedFPS && TargetFrameRate >= 60;
             if (Use61UPS)

@@ -43,7 +43,7 @@ namespace DuckGame
 
         public override void Initialize()
         {
-            Program.main.IsFixedTimeStep = true;
+            Program.main.IsFixedTimeStep = false;
             _background = new SpriteThing(313f, -40f, new Sprite("arcade/arcadeOuya"))
             {
                 center = new Vec2(0f, 0f),

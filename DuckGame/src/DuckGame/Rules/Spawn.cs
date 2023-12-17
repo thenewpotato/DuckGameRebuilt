@@ -153,6 +153,9 @@ namespace DuckGame
                 teamList1 = teamList2;
             }
             int num1 = 0;
+            teamList1.FindLast(t => t.name == "Player 1").SetHatSprite(new SpriteMap("hats/eggy", 32, 32));
+            teamList1.RemoveAll(t => t.name == "Player 3");
+            teamList1.RemoveAll(t => t.name == "Player 4");
             foreach (Team team in teamList1)
             {
                 if (team.activeProfiles.Count != 0)

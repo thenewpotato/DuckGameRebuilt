@@ -123,11 +123,11 @@ namespace Microsoft.Xna.Framework
 		{
 			get
 			{
-				return INTERNAL_synchronizeWithVerticalRetrace;
+				return false;
 			}
 			set
 			{
-				INTERNAL_synchronizeWithVerticalRetrace = value;
+				INTERNAL_synchronizeWithVerticalRetrace = false;
 				prefsChanged = true;
 			}
 		}
