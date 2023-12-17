@@ -66,7 +66,7 @@ namespace DuckGame
             }
             if (spawnPointList.Count == 0)
                 return null;
-            SpawnPoint spawnPoint = spawnPointList[Rando.Int(spawnPointList.Count - 1)];
+            SpawnPoint spawnPoint = spawnPointList[0];
             usedSpawns.Add(spawnPoint);
             Duck duck = new Duck(spawnPoint.x, spawnPoint.y - 7f, profile)
             {
@@ -135,7 +135,7 @@ namespace DuckGame
         {
             List<Duck> duckList1 = new List<Duck>();
             List<SpawnPoint> usedSpawns = new List<SpawnPoint>();
-            List<Team> teamList1 = Teams.allRandomized;
+            List<Team> teamList1 = Teams.all;
             if (GameMode.showdown)
             {
                 List<Team> teamList2 = new List<Team>();

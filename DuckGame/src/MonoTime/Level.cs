@@ -718,6 +718,7 @@ namespace DuckGame
                 }
                 if (levelIsUpdating)
                 {
+                    // === AI CONTROL ===
                     string action = "Frame!";
                     List<Duck> levelDucks = _things[typeof(Duck)].Cast<Duck>().ToList();
                     if (levelDucks.Count > 0)
@@ -728,11 +729,35 @@ namespace DuckGame
                         {
                             levelDuck.AiInput = new DuckAI();
                         }
-                        levelDuck.AiInput.HoldDown(Triggers.Left);
 
                         action = ZeroMQServer.ReadFrame();
+                        if (action == "reset")
+                        {
+                            DevConsole.RunCommand("level next");
+                            ZeroMQServer.SendFrame("ack");
+                        }
+                        else if (action == "step left")
+                        {
+                            levelDuck.AiInput.HoldDown(Triggers.Left);
+                        }
+                        else if (action == "step right")
+                        {
+                            levelDuck.AiInput.HoldDown(Triggers.Right);
+                        }
+                        else if (action == "step grab")
+                        {
+                            levelDuck.AiInput.Press(Triggers.Grab);
+                        }
+                        else if (action == "step shoot")
+                        {
+                            levelDuck.AiInput.Press(Triggers.Shoot);
+                        }
+                        else if (action == "pass")
+                        {
+                            ZeroMQServer.SendFrame("ack");
+                        }
                     }
-         
+
                     if (_camera != null)
                         _camera.DoUpdate();
                     Update();
@@ -743,32 +768,40 @@ namespace DuckGame
                     Vote.Update();
                     HUD.Update();
 
+                     //=== AI RELEASE ===
                     if (levelDucks.Count > 0)
                     {
                         Duck levelDuck = levelDucks.FindLast(t => t.profile.team.name == "Player 1");
-                        levelDuck.AiInput.Release(Triggers.Left);
 
-                        // int width = Graphics.width;
-                        // int height = Graphics.height;
-                        RenderTarget2D canvas = new RenderTarget2D(256, 144, true);
-                        MonoMain.RenderGame(canvas);
-/*                        Graphics.SetRenderTarget(canvas);
-                        Graphics.UpdateScreenViewport(true);
-                        HUD.hide = true;
-                        DrawCurrentLevel();
-                        Graphics.screen.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.Identity);
-                        // MonoMain.OnDraw();
-                        Graphics.screen.End();
-                        HUD.hide = false;*/
-                        // Graphics.width = width;
-                        // Graphics.height = height;
-                        // Graphics.SetRenderTarget(null);
+                        if (action == "step left")
+                        {
+                            levelDuck.AiInput.Release(Triggers.Left);
+                        }
+                        else if (action == "step right")
+                        {
+                            levelDuck.AiInput.Release(Triggers.Right);
+                        }
+                        else if (action == "step grab")
+                        {
+                            levelDuck.AiInput.Release(Triggers.Grab);
+                        }
+                        else if (action == "step shoot")
+                        {
+                            levelDuck.AiInput.Release(Triggers.Shoot);
+                        }
 
-/*                        Stream stream = DuckFile.Create(DuckFile.albumDirectory + "album" + DateTime.Now.ToString("MM-dd-yy H;mm;ss.fff") + ".png");
-                        canvas.SaveAsPng(stream, 256, 144);
-                        stream.Close();*/
+                        if (action.StartsWith("step"))
+                        {
+                            RenderTarget2D canvas = new RenderTarget2D(256, 144, true);
+                            MonoMain.RenderGame(canvas);
+                            Color[] pixelData = canvas.GetData();
+                            string pixelString = string.Join(",", pixelData);
 
-                        ZeroMQServer.SendFrame("Image length: " + string.Join(",", canvas.GetData()));
+                            bool kill = Event.events.Last() is KillEvent;
+
+                            string[] output = new string[] { kill.ToString(), pixelString };
+                            ZeroMQServer.SendFrame(string.Join(";", output));
+                        }
                     }
                 }
                 else

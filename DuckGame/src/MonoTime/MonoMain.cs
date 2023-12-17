@@ -230,6 +230,8 @@ namespace DuckGame
         public static bool UpdateLerpState = true;
         public static TimeSpan TotalGameTime = TimeSpan.Zero;
 
+        private int _resetFrameCount = 0;
+
         public static MonoMainCore core
         {
             get => _core;
@@ -563,8 +565,8 @@ namespace DuckGame
             int num3 = (int)(num2 * num1);
             if (num3 > 1200)
                 num3 = 1200;
-            _screenWidth = num1;
-            _screenHeight = num3;
+            _screenWidth = 256;
+            _screenHeight = 128;
             DuckFile.Initialize();
             Options.Load();
             Cloud.Initialize();
@@ -1437,6 +1439,21 @@ namespace DuckGame
             }
             else
             {
+                //if (_resetFrameCount > 0 && _resetFrameCount < 150)
+                //{
+                //    // Pass through
+                //    _resetFrameCount++;
+                //} else
+                //{
+                //    string zeroMqCommand = ZeroMQServer.ReadFrame();
+                //    if (zeroMqCommand == "reset")
+                //    {
+                //        DevConsole.RunCommand("level next");
+                //        _resetFrameCount = 1;
+                //    }
+                //}
+               
+
                 TouchScreen.Update();
                 if (!NetworkDebugger.enabled)
                     DevConsole.Update();
