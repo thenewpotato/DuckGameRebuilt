@@ -1043,8 +1043,8 @@ namespace DuckGame
                 Microsoft.Xna.Framework.Graphics.RenderTarget2D renderTarget = defaultRenderTarget != null ? defaultRenderTarget.nativeObject as Microsoft.Xna.Framework.Graphics.RenderTarget2D : null;
                 if (renderTarget == null)
                 {
-                    _currentTargetSize.width = Resolution.current.x;
-                    _currentTargetSize.height = Resolution.current.y;
+                    _currentTargetSize.width = 252; // CHANGE RESOLUTION HERE
+                    _currentTargetSize.height = 252; // CHANGE RESOLUTION HERE
                 }
                 else
                 {

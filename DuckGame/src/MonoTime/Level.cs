@@ -756,6 +756,10 @@ namespace DuckGame
                         {
                             ZeroMQServer.SendFrame("ack");
                         }
+                        else if (action == "step none")
+                        {
+                            // Perform no action, but returns frame
+                        }
                     }
 
                     if (_camera != null)
@@ -792,12 +796,17 @@ namespace DuckGame
 
                         if (action.StartsWith("step"))
                         {
-                            RenderTarget2D canvas = new RenderTarget2D(256, 144, true);
+                            RenderTarget2D canvas = new RenderTarget2D(84, 84, true);
                             MonoMain.RenderGame(canvas);
                             Color[] pixelData = canvas.GetData();
-                            string pixelString = string.Join(",", pixelData);
+                            string pixelString = string.Join(" ", pixelData);
 
                             bool kill = Event.events.Last() is KillEvent;
+
+                            // Debug: Save canvas to file
+                            //Stream stream = DuckFile.Create(DuckFile.albumDirectory + "album" + DateTime.Now.ToString("MM-dd-yy H;mm;ss.fff") + ".png");
+                            //canvas.SaveAsPng(stream, 84, 84);
+                            //stream.Close();
 
                             string[] output = new string[] { kill.ToString(), pixelString };
                             ZeroMQServer.SendFrame(string.Join(";", output));

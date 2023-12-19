@@ -88,8 +88,8 @@ namespace DuckGame
                 }
                 else
                 {
-                    _device.PreferredBackBufferWidth = _pendingResolution.x;
-                    _device.PreferredBackBufferHeight = _pendingResolution.y;
+                    _device.PreferredBackBufferWidth = 252; // CHANGE RESOLUTION HERE
+                    _device.PreferredBackBufferHeight = 252; // CHANGE RESOLUTION HERE
                 }
                 _device.IsFullScreen = _pendingResolution.mode == ScreenMode.Fullscreen;
                 _device.ApplyChanges();
